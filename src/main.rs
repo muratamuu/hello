@@ -1,11 +1,8 @@
-use tokio::io::AsyncWriteExt;
-use tokio::net::TcpStream;
 use tokio::net::TcpListener;
 use tokio_util::codec::{BytesCodec, Decoder};
 use tokio::stream::StreamExt;
 use std::error::Error;
 
-// コメントテスト
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
     let addr = "127.0.0.1:8080".to_string();
@@ -27,12 +24,4 @@ async fn main() -> Result<(), Box<dyn Error>> {
             println!("Socket received FIN packet and closed connection");
         });
     }
-
-    // let mut stream = TcpStream::connect("127.0.0.1:6142").await?;
-    // println!("created stream");
-
-    // let result = stream.write(b"hello world\n").await;
-    // println!("wrote to stream; success={:?}", result.is_ok());
-
-    // Ok(())
 }
