@@ -5,6 +5,7 @@ use tokio_util::codec::{BytesCodec, Decoder};
 use tokio::stream::StreamExt;
 use std::error::Error;
 
+// コメントテスト
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
     let addr = "127.0.0.1:8080".to_string();
