@@ -12,6 +12,13 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let config = Config::parse_cmd_line()?;
 
+    run(config).await?;
+
+    Ok(())
+}
+
+async fn run(config: Config) -> Result<(), Box<dyn Error>> {
+
     let addr = format!("0.0.0.0:{}", config.listen_port).to_string();
 
     let mut listener = TcpListener::bind(&addr).await?;
