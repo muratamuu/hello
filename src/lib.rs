@@ -6,35 +6,9 @@ use tokio::net::TcpListener;
 use tokio_util::codec::{BytesCodec, Decoder};
 use tokio::stream::StreamExt;
 
-pub struct Config {
-    pub listen_port: u16,
-}
+pub mod config;
 
-impl Config {
-    pub fn parse_cmd_line() -> Result<Config, Box<dyn Error>> {
-        use clap::{App, Arg};
-
-        let app = App::new(crate_name!())
-            .version(crate_version!())
-            .author(crate_authors!())
-            .about(crate_description!())
-            .arg(Arg::with_name("listen_port")
-                .help("listening port number")
-                .short("p")
-                .long("port")
-                .takes_value(true)
-        );
-
-        let matches = app.get_matches();
-        let listen_port = matches.value_of("listen_port")
-            .unwrap_or("8080")
-            .parse()?;
-
-        Ok(Config { listen_port })
-    }
-}
-
-pub async fn run(config: Config) -> Result<(), Box<dyn Error>> {
+pub async fn run(config: config::Config) -> Result<(), Box<dyn Error>> {
 
     let addr = format!("0.0.0.0:{}", config.listen_port).to_string();
 
