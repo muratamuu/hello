@@ -1,6 +1,6 @@
 extern crate hello;
 
-use hello::{run, config};
+use hello::{config, server};
 use std::error::Error;
 
 #[tokio::main]
@@ -8,7 +8,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let config = config::Config::parse_cmd_line()?;
 
-    run(config).await?;
+    server::run(config).await?;
 
     Ok(())
 }
